@@ -1,6 +1,7 @@
 variable "prefix" {
-  default = "dsvm"
+  default = "ari"
 }
+
 variable "azure_subscription_id" {
 }
 variable "azure_client_id" {
@@ -13,7 +14,7 @@ variable "azure_tenant_id" {
 }
 
 variable "location" {
-  default = "eastus"
+  default = "japaneast"
 }
 
 variable "vm_size" {
@@ -26,4 +27,12 @@ variable "pubkey_path" {
 
 variable "privkey_path" {
   default = "~/.ssh/id_rsa"
+}
+
+variable "access_source_address" {
+  default = "*"
+}
+
+variable "dsvm_version" {
+  default = "19.08.23"
 }
