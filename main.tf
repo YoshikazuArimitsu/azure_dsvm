@@ -1,5 +1,6 @@
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
+    version  =  "1.36.1"
   subscription_id = "${var.azure_subscription_id}"
   client_id       = "${var.azure_client_id}"
   client_secret   = "${var.azure_client_secret}"
@@ -245,6 +246,31 @@ resource "null_resource" "provision" {
   }
 }
 
+# Schedule Shutdown
+resource "azurerm_dev_test_lab" "testlab" {
+  name                = "${var.prefix}-testlab"
+  location                   = "${var.location}"
+  resource_group_name        = "${azurerm_resource_group.dsvm_group.name}"
+}
+
+resource "azurerm_dev_test_schedule" "schedule_shutdown" {
+  name                = "${var.prefix}-shutdown"
+  location                   = "${var.location}"
+  resource_group_name        = "${azurerm_resource_group.dsvm_group.name}"
+  lab_name            = "${azurerm_dev_test_lab.testlab.name}"
+
+  weekly_recurrence {
+    time      = "${var.shutdown_time}"
+    week_days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  }
+
+  time_zone_id = "Tokyo Standard Time"
+  task_type    = "ComputeVmShutdownTask"
+
+  notification_settings {
+  }
+
+}
 output "dsvm-url" {
   value = "https://${azurerm_public_ip.dsvm_publicip.fqdn}:8443/"
 }

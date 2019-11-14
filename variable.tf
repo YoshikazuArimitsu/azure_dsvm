@@ -1,5 +1,5 @@
 variable "prefix" {
-  default = "ari"
+  default = "dsvm"
 }
 
 variable "azure_subscription_id" {
@@ -35,4 +35,8 @@ variable "access_source_address" {
 
 variable "dsvm_version" {
   default = "19.08.23"
+}
+
+variable "shutdown_time" {
+  default = "1930"
 }
