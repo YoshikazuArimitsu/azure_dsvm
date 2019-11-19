@@ -9,6 +9,7 @@ Azure に
 * JupyterLabに変更済
 * IPA日本語フォントインストール済
 * 指定IPアドレスからのSSH(22)/HTTPS(8443)のみ許可
+* タイムゾーンを Asia/Tokyo に変更済み
 * 毎日19:30シャットダウン(注・なぜか効かない)
 
 な仮想マシンを作成します。
@@ -36,11 +37,11 @@ Azure に
 |vm_size|Standard_DS1_v2|VMのサイズ|
 |pubkey_path|~/.ssh/id_rsa.pub|公開鍵のパス|
 |privkey_path|~/.ssh/id_rsa|秘密鍵のパス|
-|access_source_address|*|アクセス許可元アドレス|
+|access_source_address|*|ssh/jupyterのアクセス許可元アドレス|
 |dsvm_version|19.08.23|DSVM Imageのバージョン|
 |shutdown_time|1930|毎日の自動シャットダウン時刻|
 
-* azure_subscription_id ~ azure_tenant_id
+* azure_subscription_id ~ azure_tenant_id は事前準備のリンク先を参照して設定してください。
 
 
 ### 実行
